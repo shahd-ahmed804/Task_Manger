@@ -116,6 +116,7 @@ class _EditScreenState extends State<EditScreen> {
                     color: Color(0xff24252C),
                   ),
                 ),
+
                 Spacer(),
                 GestureDetector(
                   onTap: () async {
