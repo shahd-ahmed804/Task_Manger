@@ -128,6 +128,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           (route) => false,
                     );
                   },
+
                   icon: const Icon(Icons.logout),
                   label: const Text('Logout',style:TextStyle(
                     fontSize: 16,
