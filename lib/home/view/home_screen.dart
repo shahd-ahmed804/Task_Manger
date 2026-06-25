@@ -1,15 +1,13 @@
 import 'package:date_picker_timeline/date_picker_widget.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:taskey_app/auth/screens/login_screen.dart';
 import 'package:taskey_app/core/network/result_firebase.dart';
 import 'package:taskey_app/core/utils/app_asset.dart';
 import 'package:taskey_app/core/utils/app_dialog.dart';
 import 'package:taskey_app/home/data/firebase/firebase_task.dart';
 import 'package:taskey_app/home/data/model/task_model.dart';
-import 'package:taskey_app/home/screen/edit_screen.dart';
 import 'package:taskey_app/home/widget/item_card_widget.dart';
 import 'package:taskey_app/home/widget/show_buttom_sheet_task.dart';
+import 'edit_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = 'HomeScreen';
@@ -56,29 +54,6 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Image.asset(AppAsset.logo),
-        actions: [
-          InkWell(
-            onTap: () {
-              FirebaseAuth.instance.signOut();
-              Navigator.of(context).pushReplacementNamed(LoginScreen.routeName);
-            },
-            child: Row(
-              children: [
-                Image.asset(AppAsset.logOutIcon),
-                SizedBox(width: 10),
-                Text(
-                  'Log out',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w400,
-                    color: Color(0xffFF4949),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          SizedBox(width: 10),
-        ],
       ),
       body: Column(
         spacing: 10,

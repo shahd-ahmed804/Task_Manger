@@ -11,7 +11,7 @@ Future<void> showWelcomeNotification({
   String title;
   String body;
 
-  // حساب عدد المهام المنجزة
+
   final completedTasksCount = totalTasksCount - pendingTasksCount;
 
   if (totalTasksCount == 0) {

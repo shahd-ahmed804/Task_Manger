@@ -67,5 +67,24 @@ static Future<ResultFB<String>> getUserName(String uid) async {
       return ErrorFB(messageError: e.toString());
     }
   }
+  ////
+  static Future<ResultFB<UserModel>> getUserData(String uid) async {
+    try {
+      final userDoc = await _getCollection.doc(uid).get();
 
+      if (userDoc.exists && userDoc.data() != null) {
+        return SuccessFB(data: userDoc.data()!);
+      } else {
+        return ErrorFB(
+          messageError: 'بيانات المستخدم غير موجودة.',
+        );
+      }
+    } catch (e) {
+      return ErrorFB(
+        messageError: e.toString(),
+      );
+    }
+  }
+
+/////
 }
