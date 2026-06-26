@@ -67,7 +67,6 @@ static Future<ResultFB<String>> getUserName(String uid) async {
       return ErrorFB(messageError: e.toString());
     }
   }
-
   static Future<ResultFB<UserModel>> getUserData(String uid) async {
     try {
       final userDoc = await _getCollection.doc(uid).get();
