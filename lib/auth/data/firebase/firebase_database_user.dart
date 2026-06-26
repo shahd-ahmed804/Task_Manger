@@ -85,4 +85,5 @@ static Future<ResultFB<String>> getUserName(String uid) async {
       );
     }
   }
+  
 }
