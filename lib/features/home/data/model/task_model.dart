@@ -14,7 +14,7 @@ class TaskModel {
   DateTime? selectedDate;
   int? priorityIndex;
   bool? isCompleted;
-  Map<String, dynamic> toJoson() {
+  Map<String, dynamic> toJson() {
     final normalDate = DateTime(
       selectedDate!.year,
       selectedDate!.month,

@@ -1,3 +1,4 @@
+/*
 import 'package:date_picker_timeline/date_picker_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:taskey_app/core/network/result_firebase.dart';
@@ -218,5 +219,235 @@ class _HomeScreenState extends State<HomeScreen> {
     Navigator.of(context)
         .pushNamed(EditScreen.routeName, arguments: task)
         .then((_) => getTask(_selectedValue));
+  }
+}
+ */
+
+
+import 'package:date_picker_timeline/date_picker_widget.dart';
+import 'package:flutter/material.dart';
+import 'package:taskey_app/core/utils/app_asset.dart';
+import '../../../../core/utils/app_dialog.dart';
+import '../../view_model/home_state.dart';
+import '../widget/item_card_widget.dart';
+import '../widget/show_button_sheet_task.dart';
+import 'edit_screen.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../data/model/task_model.dart';
+import 'package:taskey_app/features/home/view_model/home_cubit.dart';
+
+
+class HomeScreen extends StatefulWidget {
+  static const String routeName = 'HomeScreen';
+  const HomeScreen({super.key});
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+class _HomeScreenState extends State<HomeScreen> {
+  DateTime _selectedValue = DateTime.now();
+  @override
+  void initState() {
+    super.initState();
+    context.read<HomeCubit>().getTasks(_selectedValue);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Image.asset(AppAsset.logo),
+      ),
+      body: Column(
+        spacing: 10,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: DatePicker(
+              DateTime.now().subtract(Duration(days: 2)),
+              height: 100,
+              initialSelectedDate: DateTime.now(),
+              daysCount: 30,
+              selectionColor: Color(0xff5F33E1),
+              selectedTextColor: Colors.white,
+              onDateChange: (date) {
+                setState(() {
+                  _selectedValue = date;
+                });
+                context.read<HomeCubit>().getTasks(date);
+              },
+            ),
+          ),
+          Expanded(
+            child: BlocBuilder<HomeCubit, HomeState>(
+              builder: (context, state) {
+                if (state is HomeLoading) {
+                  return _loadingState();
+                }
+
+                if (state is HomeError) {
+                  return Center(
+                    child: Text(state.message),
+                  );
+                }
+
+                if (state is HomeLoaded) {
+                  return _listOfTasks(
+                    state.pendingTasks,
+                    state.completedTasks,
+                  );
+                }
+
+                return const SizedBox();
+              },
+            ),
+          ),
+        ],
+      ),
+
+      floatingActionButton: FloatingActionButton(
+        shape: CircleBorder(),
+        backgroundColor: Color(0xff24252C),
+        onPressed: _onPressedAddTask,
+        child: Icon(Icons.add, color: Color(0xff5F33E1)),
+      ),
+    );
+  }
+
+  void _onPressedAddTask() {
+    showModalBottomSheet(
+      context: context,
+      builder: (context) => ShowButtonSheetTask(),
+    ).whenComplete(() {
+      context.read<HomeCubit>().refresh();
+    });
+  }
+
+  Widget _loadingState() {
+    return const Center(
+      child: CircularProgressIndicator(),
+    );
+  }
+
+  Widget _listOfTasks(
+      List<TaskModel> pendingTasks,
+      List<TaskModel> completedTasks,
+      ) {
+    if (pendingTasks.isEmpty && completedTasks.isEmpty) {
+      return _emptyState();
+    }
+
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          ListView.separated(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            padding: const EdgeInsets.symmetric(horizontal: 24),
+            itemBuilder: (context, index) {
+              final task = pendingTasks[index];
+              return ItemCardWidget(
+                task: task,
+                title: task.title ?? '',
+                dateTime: task.selectedDate ?? DateTime.now(),
+                priority: task.priorityIndex ?? 1,
+                isCompleted: task.isCompleted ?? false,
+                onPressed: () => onCompletedButton(task),
+                onDelete: ()=> onDeleteButton(task),
+                onEdit: () => onEdit(task),
+              );
+            },
+            itemCount: pendingTasks.length,
+            separatorBuilder: (_, __) => const SizedBox(height: 16),
+          ),
+
+          Container(
+            margin: const EdgeInsets.only(
+              left: 21,
+              top: 20,
+              bottom: 20,
+            ),
+            padding: const EdgeInsets.symmetric(
+              horizontal: 10,
+              vertical: 5,
+            ),
+            decoration: BoxDecoration(
+              border: Border.all(),
+              borderRadius: BorderRadius.circular(6),
+            ),
+            child: const Text(
+              'Completed',
+              style: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w400,
+              ),
+            ),
+          ),
+
+          ListView.separated(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            padding: const EdgeInsets.symmetric(horizontal: 24),
+            itemBuilder: (context, index) {
+              final task = completedTasks[index];
+              return ItemCardWidget(
+                task: task,
+                title: task.title ?? '',
+                dateTime: task.selectedDate ?? DateTime.now(),
+                priority: task.priorityIndex ?? 1,
+                isCompleted: task.isCompleted ?? false,
+                onPressed: () => onCompletedButton(task),
+                onDelete: ()=> onDeleteButton(task),
+                onEdit: () => onEdit(task),
+              );
+            },
+            itemCount: completedTasks.length,
+            separatorBuilder: (_, __) => const SizedBox(height: 16),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _emptyState() {
+    return Center(
+      child: Column(
+        spacing: 10,
+        children: [
+          SizedBox(height: 90),
+          Image.asset(AppAsset.emptyImage),
+          Text(
+            'What do you want to do today?',
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.w400,
+              color: Color(0xff58585E),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Future<void> onCompletedButton(TaskModel task) async {
+    await context.read<HomeCubit>().toggleComplete(task);
+  }
+
+
+  void onEdit(TaskModel task) {
+    Navigator.of(context)
+        .pushNamed(EditScreen.routeName, arguments: task)
+        .then((_) {
+      context.read<HomeCubit>().refresh();
+    });
+  }
+  Future<void> onDeleteButton(TaskModel task) async {
+    AppDialog.showLoading(context);
+
+    await context.read<HomeCubit>().deleteTask(task);
+
+    if (!mounted) return;
+    Navigator.pop(context);
+    Navigator.pop(context);
   }
 }

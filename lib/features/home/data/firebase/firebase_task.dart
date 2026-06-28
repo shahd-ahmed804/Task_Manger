@@ -17,7 +17,7 @@ abstract class FirebaseTask {
         .collection(TaskModel.collectionName)
         .withConverter<TaskModel>(
           fromFirestore: (doc, _) => TaskModel.fromJson(doc.data()!),
-          toFirestore: (task, _) => task.toJoson(),
+          toFirestore: (task, _) => task.toJson(),
         );
   }
 
@@ -75,7 +75,7 @@ static Future<ResultFB<void>> updateTask(TaskModel task) async {
       }
       
       final docRef = _getCollection.doc(task.id);
-      await docRef.update(task.toJoson());
+      await docRef.update(task.toJson());
 
       return SuccessFB();
     } catch (e) {
