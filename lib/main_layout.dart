@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:taskey_app/home/view/home_screen.dart';
-import 'package:taskey_app/profile/profile_screen.dart';
+
+import 'features/home/view/screens/home_screen.dart';
+import 'features/profile/profile_screen.dart';
+
 
 class MainLayout extends StatefulWidget {
   static const String routeName = 'MainLayout';

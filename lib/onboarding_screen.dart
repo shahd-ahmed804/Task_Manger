@@ -4,7 +4,9 @@ import 'package:taskey_app/const.dart';
 import 'package:taskey_app/core/widget/custom_animated_widget.dart';
 import 'package:taskey_app/core/widget/onboarding_model.dart';
 
-import 'auth/view/login_screen.dart';
+import 'features/auth/view/screens/login_screen.dart';
+
+
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});

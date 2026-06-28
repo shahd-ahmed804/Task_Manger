@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:taskey_app/const.dart';
-import 'package:taskey_app/home/data/model/task_model.dart';
+
+import '../../features/home/data/model/task_model.dart';
 
 abstract class AppDialog {
   static void showLoading(BuildContext context) {
