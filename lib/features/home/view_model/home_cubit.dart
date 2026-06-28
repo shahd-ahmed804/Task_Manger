@@ -19,7 +19,6 @@ class HomeCubit extends Cubit<HomeState> {
     selectedDate = date;
 
     final result = await FirebaseTask.getTasks(date);
-
     switch (result) {
       case SuccessFB<List<TaskModel>>():
         final allTasks = result.data ?? [];

@@ -322,6 +322,7 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
+
   Widget _loadingState() {
     return const Center(
       child: CircularProgressIndicator(),

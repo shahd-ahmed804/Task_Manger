@@ -21,7 +21,6 @@ final class HomeError extends HomeState {
 
 
 import '../data/model/task_model.dart';
-
 abstract class HomeState {}
 
 class HomeInitial extends HomeState {}

@@ -29,7 +29,6 @@ void main() async {
 
 class ToDoApp extends StatelessWidget {
   const ToDoApp({super.key});
-
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(

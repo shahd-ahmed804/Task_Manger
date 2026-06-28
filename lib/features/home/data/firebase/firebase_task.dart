@@ -58,7 +58,6 @@ abstract class FirebaseTask {
       return ErrorFB(messageError: e.toString());
     }
   }
-
   static Future<ResultFB<void>> deleteTask(TaskModel task) async {
     try {
       final docRef = _getCollection.doc(task.id);

@@ -245,7 +245,6 @@ class _EditScreenState extends State<EditScreen> {
       AppDialog.showLoading(context);
 
       await context.read<HomeCubit>().deleteTask(widget.task);
-
       if (!mounted) return;
       Navigator.pop(context);
       Navigator.pop(context);
