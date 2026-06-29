@@ -17,7 +17,6 @@ class EditScreen extends StatefulWidget {
   static const String routeName = 'EditScreen';
   final TaskModel task;
   const EditScreen({super.key, required this.task});
-
   @override
   State<EditScreen> createState() => _EditScreenState();
 }
