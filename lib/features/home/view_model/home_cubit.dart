@@ -63,5 +63,4 @@ class HomeCubit extends Cubit<HomeState> {
   Future<void> refresh() async {
     await getTasks(selectedDate);
   }
-
 }

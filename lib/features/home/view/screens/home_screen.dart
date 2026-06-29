@@ -442,7 +442,6 @@ class _HomeScreenState extends State<HomeScreen> {
     await context.read<HomeCubit>().toggleComplete(task);
   }
 
-
   void onEdit(TaskModel task) {
     Navigator.of(context)
         .pushNamed(EditScreen.routeName, arguments: task)

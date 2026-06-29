@@ -12,7 +12,6 @@ import '../widget/priority_widget.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:taskey_app/features/home/view_model/home_cubit.dart';
 
-
 class EditScreen extends StatefulWidget {
   static const String routeName = 'EditScreen';
   final TaskModel task;
