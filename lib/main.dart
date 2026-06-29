@@ -102,7 +102,6 @@ import 'onboarding_screen.dart';
 import 'package:taskey_app/features/home/view_model/home_cubit.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
