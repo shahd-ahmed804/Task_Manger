@@ -11,7 +11,7 @@ plugins {
 android {
     namespace = "com.example.taskey_app"
     compileSdk = flutter.compileSdkVersion
-    ndkVersion = "29.0.14206865"
+    ndkVersion = "30.0.14904198"
 
     compileOptions {
         isCoreLibraryDesugaringEnabled = true
@@ -28,7 +28,7 @@ android {
         applicationId = "com.example.taskey_app"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
-        minSdk = 23
+        minSdk = flutter.minSdkVersion
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName

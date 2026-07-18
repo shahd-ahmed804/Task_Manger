@@ -1,4 +1,6 @@
+
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taskey_app/core/network/result_firebase.dart';
 import 'package:taskey_app/core/utils/app_asset.dart';
 import 'package:taskey_app/core/utils/app_dialog.dart';
@@ -23,10 +25,10 @@ class _ShowButtonSheetTaskState extends State<ShowButtonSheetTask> {
     final keyboardHeight = MediaQuery.of(context).viewInsets.bottom;
     return Padding(
       padding: EdgeInsets.only(
-        bottom: 30 + keyboardHeight,
-        left: 24,
-        right: 24,
-        top: 15,
+        bottom: 30 + keyboardHeight.r,
+        left: 24.r,
+        right: 24.r,
+        top: 15.r,
       ),
       child: SingleChildScrollView(
         child: Column(
@@ -138,3 +140,6 @@ class _ShowButtonSheetTaskState extends State<ShowButtonSheetTask> {
     super.dispose();
   }
 }
+
+
+

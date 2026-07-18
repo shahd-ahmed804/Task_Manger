@@ -1,4 +1,6 @@
+
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taskey_app/const.dart';
 import 'package:taskey_app/core/utils/app_asset.dart';
 
@@ -31,7 +33,7 @@ class _PriorityWidgetState extends State<PriorityWidget> {
           Text(
             'Task Priority',
             style: TextStyle(
-              fontSize: 16,
+              fontSize: 16.sp,
               fontWeight: FontWeight.bold,
               color: Color(0xff24252C),
             ),
@@ -102,12 +104,12 @@ class _PriorityItemWidget extends StatelessWidget {
       onTap: onTap,
       child: Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(4),
+          borderRadius: BorderRadius.circular(4.r),
           border: isSelected ? null : Border.all(color: Color(0xff24252C)),
 
           color: isSelected ? Color(0xff5F33E1) : null,
         ),
-        padding: EdgeInsets.symmetric(vertical: 7, horizontal: 16),
+        padding: EdgeInsets.symmetric(vertical: 7.r, horizontal: 16.r),
         margin: EdgeInsets.only(left: 16, top: 12),
         child: Column(
           spacing: 5,
@@ -119,7 +121,7 @@ class _PriorityItemWidget extends StatelessWidget {
             Text(
               index.toString(),
               style: TextStyle(
-                fontSize: 16,
+                fontSize: 16.sp,
                 fontWeight: FontWeight.w400,
                 color: isSelected ? Color(0xffFFFFFF) : Color(0xff24252C),
               ),
@@ -130,3 +132,6 @@ class _PriorityItemWidget extends StatelessWidget {
     );
   }
 }
+
+
+

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taskey_app/const.dart';
 
 class InKWellWidget extends StatelessWidget {
@@ -24,7 +25,7 @@ class InKWellWidget extends StatelessWidget {
             title,
             style: TextStyle(
               color: Color(0xff000000),
-              fontSize: 13,
+              fontSize: 13.sp,
               fontWeight: FontWeight.w500,
             ),
           ),
@@ -32,7 +33,7 @@ class InKWellWidget extends StatelessWidget {
             subTitle,
             style: TextStyle(
               color: themeColor,
-              fontSize: 13,
+              fontSize: 13.sp,
               fontWeight: FontWeight.w500,
             ),
           ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ButtonIsComplete extends StatelessWidget {
   const ButtonIsComplete({
@@ -19,10 +20,10 @@ class ButtonIsComplete extends StatelessWidget {
         padding: EdgeInsets.all(2),
         decoration: BoxDecoration(
           shape: BoxShape.circle,
-          border: Border.all(color: Color(0xff5F33E1), width: 1.0),
+          border: Border.all(color: Color(0xff5F33E1), width: 1.0.w),
         ),
         child: CircleAvatar(
-          radius: 8,
+          radius: 8.r,
           backgroundColor: isCompleted
               ? Color(0xff5F33E1)
               : Color(0xffFFFFFF),

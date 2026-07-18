@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:taskey_app/const.dart';
@@ -8,10 +9,10 @@ import 'package:taskey_app/main_layout.dart';
 import '../../view_model/auth_cubit.dart';
 import '../widgets/inkwell_widget.dart';
 import '../widgets/text_form_field_widget.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
-
   static const String routeName = 'LoginScreen';
 
   @override
@@ -52,6 +53,7 @@ class _LoginScreenState extends State<LoginScreen> {
       },
       builder: (context, state) {
         return Scaffold(
+          resizeToAvoidBottomInset: false,
           body: SingleChildScrollView(
             padding: EdgeInsets.symmetric(horizontal: 24, vertical: 8),
             child: Form(
@@ -59,40 +61,40 @@ class _LoginScreenState extends State<LoginScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(height: 122),
+                  SizedBox(height: 122.h),
                   Text(
                     'Login',
                     style: TextStyle(
-                      fontSize: 32,
+                      fontSize: 32.sp,
                       fontWeight: FontWeight.bold,
                       color: Color(0xff404147),
                     ),
                   ),
-                  SizedBox(height: 53),
+                  SizedBox(height: 53.h),
                   Text(
                     'email',
                     style: TextStyle(
-                      fontSize: 16,
+                      fontSize: 16.sp,
                       fontWeight: FontWeight.w400,
                       color: Color(0xff404147),
                     ),
                   ),
-                  SizedBox(height: 5),
+                  SizedBox(height: 5.h),
                   TextFormFieldWidget(
                     controller: email,
                     validator: Validator.validateEmail,
                     hintText: 'enter email',
                   ),
-                  SizedBox(height: 26),
+                  SizedBox(height: 26.h),
                   Text(
                     'password',
                     style: TextStyle(
-                      fontSize: 16,
+                      fontSize: 16.h,
                       fontWeight: FontWeight.w400,
                       color: Color(0xff404147),
                     ),
                   ),
-                  SizedBox(height: 5),
+                  SizedBox(height: 5.h),
                   TextFormFieldWidget(
                     controller: password,
                     validator: Validator.validatePassword,
@@ -100,19 +102,19 @@ class _LoginScreenState extends State<LoginScreen> {
                     isPassword: true,
                     obscureText: true,
                   ),
-                  SizedBox(height: 71),
+                  SizedBox(height: 71.h),
                   MaterialButton(
                     onPressed: onPressedLogin,
                     color: themeColor,
                     minWidth: double.infinity,
-                    height: 48,
+                    height: 48.h,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
+                      borderRadius: BorderRadius.circular(10.r),
                     ),
                     child: Text(
                       'Next',
                       style: TextStyle(
-                        fontSize: 16,
+                        fontSize: 16.sp,
                         fontWeight: FontWeight.w500,
                         color: Color(0xffFFFFFF),
                       ),
@@ -140,3 +142,6 @@ class _LoginScreenState extends State<LoginScreen> {
      }
    }
 }
+
+
+

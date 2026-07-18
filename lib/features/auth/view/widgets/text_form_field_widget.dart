@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 typedef MyValidator = String? Function(String?);
 
 class TextFormFieldWidget extends StatefulWidget {
@@ -28,8 +29,8 @@ class _TextFormFieldWidgetState extends State<TextFormFieldWidget> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      style: const TextStyle(
-        fontSize: 18,
+      style:  TextStyle(
+        fontSize: 18.sp,
         fontWeight: FontWeight.w400,
         color: Colors.black,
         overflow: TextOverflow.ellipsis,
@@ -39,7 +40,7 @@ class _TextFormFieldWidgetState extends State<TextFormFieldWidget> {
       decoration: InputDecoration(
         hintText: widget.hintText,
         hintStyle: TextStyle(
-          fontSize: 18,
+          fontSize: 18.sp,
           fontWeight: FontWeight.w400,
           color: Colors.grey,
           overflow: TextOverflow.ellipsis,
@@ -62,23 +63,23 @@ class _TextFormFieldWidgetState extends State<TextFormFieldWidget> {
         contentPadding: const EdgeInsets.all(15),
         enabledBorder: outlineInputBorder(
           color: Color(0xffBABABA),
-          radius: 10,
-          width: 1,
+          radius: 10.r,
+          width: 1.w,
         ),
         focusedBorder: outlineInputBorder(
           color: Color(0xff5F33E1),
-          radius: 10,
-          width: 1,
+          radius: 10.r,
+          width: 1.w,
         ),
         errorBorder: outlineInputBorder(
           color: Colors.red,
-          radius: 10,
-          width: 1,
+          radius: 10.r,
+          width: 1.w,
         ),
         focusedErrorBorder: outlineInputBorder(
           color: Colors.red,
-          radius: 10,
-          width: 1,
+          radius: 10.r,
+          width: 1.w,
         ),
       ),
       keyboardType: widget.keyboardType,

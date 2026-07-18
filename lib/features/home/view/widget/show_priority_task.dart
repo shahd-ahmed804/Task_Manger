@@ -1,4 +1,6 @@
+
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taskey_app/core/utils/app_asset.dart';
 
 class ShowPriorityTask extends StatelessWidget {
@@ -13,11 +15,11 @@ class ShowPriorityTask extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(4),
+        borderRadius: BorderRadius.circular(4.r),
         border: Border.all(color: Color(0xff24252C)),
       ),
-      padding: EdgeInsets.all(8),
-      margin: EdgeInsets.only(right: 10, bottom: 4),
+      padding: EdgeInsets.all(8.r),
+      margin: EdgeInsets.only(right: 10.r, bottom: 4.r),
       child: Row(
         spacing: 5,
         children: [
@@ -25,7 +27,7 @@ class ShowPriorityTask extends StatelessWidget {
           Text(
             priority.toString(),
             style: TextStyle(
-              fontSize: 16,
+              fontSize: 16.sp,
               fontWeight: FontWeight.w400,
               color: Color(0xff24252C),
             ),
@@ -35,3 +37,6 @@ class ShowPriorityTask extends StatelessWidget {
     );
   }
 }
+
+
+

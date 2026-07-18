@@ -1,4 +1,6 @@
+
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:taskey_app/core/utils/app_dialog.dart';
 import 'package:taskey_app/features/home/view/widget/show_priority_task.dart';
@@ -67,7 +69,7 @@ class ItemCardWidget extends StatelessWidget {
                 Text(
                   title,
                   style: TextStyle(
-                    fontSize: 16,
+                    fontSize: 16.sp,
                     fontWeight: FontWeight.w400,
                     color: Color(0xff24252C),
                   ),
@@ -75,7 +77,7 @@ class ItemCardWidget extends StatelessWidget {
                 Text(
                   _formateDate(dateTime),
                   style: TextStyle(
-                    fontSize: 16,
+                    fontSize: 16.sp,
                     fontWeight: FontWeight.w400,
                     color: Color(0xff6E6A7C),
                   ),
@@ -94,3 +96,6 @@ class ItemCardWidget extends StatelessWidget {
     return '${date.day}/${date.month}/${date.year}';
   }
 }
+
+
+
