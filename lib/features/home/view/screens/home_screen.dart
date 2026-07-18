@@ -11,13 +11,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../data/model/task_model.dart';
 import 'package:taskey_app/features/home/view_model/home_cubit.dart';
 
-
 class HomeScreen extends StatefulWidget {
   static const String routeName = 'HomeScreen';
   const HomeScreen({super.key});
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
+
 class _HomeScreenState extends State<HomeScreen> {
   DateTime _selectedValue = DateTime.now();
   @override
@@ -30,53 +30,48 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: AppBar(
-        title: Image.asset(AppAsset.logo),
+      appBar: AppBar(title: Image.asset(AppAsset.logo)),
+      body: Column(
+        children: [
+          Padding(
+            padding: EdgeInsets.all(8.0.r),
+            child: DatePicker(
+              DateTime.now().subtract(const Duration(days: 2)),
+              height: 100.h,
+              initialSelectedDate: DateTime.now(),
+              daysCount: 30,
+              selectionColor: const Color(0xff5F33E1),
+              selectedTextColor: Colors.white,
+              onDateChange: (date) {
+                setState(() {
+                  _selectedValue = date;
+                });
+                context.read<HomeCubit>().getTasks(date);
+              },
+            ),
+          ),
+
+          Expanded(
+            child: BlocBuilder<HomeCubit, HomeState>(
+              builder: (context, state) {
+                if (state is HomeLoading) {
+                  return _loadingState();
+                }
+
+                if (state is HomeError) {
+                  return Center(child: Text(state.message));
+                }
+
+                if (state is HomeLoaded) {
+                  return _listOfTasks(state.pendingTasks, state.completedTasks);
+                }
+
+                return const SizedBox();
+              },
+            ),
+          ),
+        ],
       ),
-      body:Column(
-    children: [
-    Padding(
-    padding: EdgeInsets.all(8.0.r),
-    child: DatePicker(
-    DateTime.now().subtract(const Duration(days: 2)),
-    height: 100.h,
-    initialSelectedDate: DateTime.now(),
-    daysCount: 30,
-    selectionColor: const Color(0xff5F33E1),
-    selectedTextColor: Colors.white,
-    onDateChange: (date) {
-    setState(() {
-    _selectedValue = date;
-    });
-    context.read<HomeCubit>().getTasks(date);
-    },
-    ),
-    ),
-
-    Expanded(
-    child: BlocBuilder<HomeCubit, HomeState>(
-    builder: (context, state) {
-    if (state is HomeLoading) {
-    return _loadingState();
-    }
-
-    if (state is HomeError) {
-    return Center(child: Text(state.message));
-    }
-
-    if (state is HomeLoaded) {
-    return _listOfTasks(
-    state.pendingTasks,
-    state.completedTasks,
-    );
-    }
-
-    return const SizedBox();
-    },
-    ),
-    ),
-    ],
-    ),
 
       floatingActionButton: FloatingActionButton(
         shape: CircleBorder(),
@@ -96,17 +91,14 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
-
   Widget _loadingState() {
-    return const Center(
-      child: CircularProgressIndicator(),
-    );
+    return const Center(child: CircularProgressIndicator());
   }
 
   Widget _listOfTasks(
-      List<TaskModel> pendingTasks,
-      List<TaskModel> completedTasks,
-      ) {
+    List<TaskModel> pendingTasks,
+    List<TaskModel> completedTasks,
+  ) {
     if (pendingTasks.isEmpty && completedTasks.isEmpty) {
       return RefreshIndicator(
         onRefresh: _onRefresh,
@@ -127,7 +119,7 @@ class _HomeScreenState extends State<HomeScreen> {
         padding: EdgeInsets.symmetric(horizontal: 24.w),
         children: [
           ...pendingTasks.map(
-                (task) => Padding(
+            (task) => Padding(
               padding: EdgeInsets.only(bottom: 16.h),
               child: ItemCardWidget(
                 task: task,
@@ -144,30 +136,20 @@ class _HomeScreenState extends State<HomeScreen> {
 
           if (completedTasks.isNotEmpty)
             Container(
-              margin: EdgeInsets.only(
-                left: 0,
-                top: 20.h,
-                bottom: 20.h,
-              ),
-              padding: EdgeInsets.symmetric(
-                horizontal: 10.w,
-                vertical: 5.h,
-              ),
+              margin: EdgeInsets.only(left: 0, top: 20.h, bottom: 20.h),
+              padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 5.h),
               decoration: BoxDecoration(
                 border: Border.all(),
                 borderRadius: BorderRadius.circular(6.r),
               ),
               child: Text(
                 'Completed',
-                style: TextStyle(
-                  fontSize: 12.sp,
-                  fontWeight: FontWeight.w400,
-                ),
+                style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w400),
               ),
             ),
 
           ...completedTasks.map(
-                (task) => Padding(
+            (task) => Padding(
               padding: EdgeInsets.only(bottom: 16.h),
               child: ItemCardWidget(
                 task: task,
@@ -187,6 +169,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
+
   Widget _emptyState() {
     return Column(
       children: [
@@ -209,12 +192,13 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void onEdit(TaskModel task) {
-    Navigator.of(context)
-        .pushNamed(EditScreen.routeName, arguments: task)
-        .then((_) {
-      context.read<HomeCubit>().refresh();
-    });
+    Navigator.of(context).pushNamed(EditScreen.routeName, arguments: task).then(
+      (_) {
+        context.read<HomeCubit>().refresh();
+      },
+    );
   }
+
   Future<void> onDeleteButton(TaskModel task) async {
     AppDialog.showLoading(context);
 
@@ -224,9 +208,8 @@ class _HomeScreenState extends State<HomeScreen> {
     Navigator.pop(context);
     Navigator.pop(context);
   }
+
   Future<void> _onRefresh() async {
     await context.read<HomeCubit>().refresh();
   }
 }
-
-
