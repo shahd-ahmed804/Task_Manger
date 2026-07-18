@@ -225,6 +225,7 @@ class _EditScreenState extends State<EditScreen> {
               Navigator.of(context).pop();
             }
           },
+
           color: themeColor,
           minWidth: double.infinity,
           height: 48.h,
