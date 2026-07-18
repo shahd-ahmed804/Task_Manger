@@ -53,7 +53,6 @@ A modern *Task Management* application built with *Flutter & Dart* using *MVVM A
 bash
 git clone https://github.com/shahd-ahmed804/Task_Manger.git
 
-
 ### Install dependencies
 
 bash
