@@ -220,7 +220,6 @@ class _EditScreenState extends State<EditScreen> {
         child: MaterialButton(
           onPressed: () async {
             await _updateTask();
-
             if (mounted) {
               Navigator.of(context).pop();
             }
