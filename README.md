@@ -63,7 +63,6 @@ bash
 flutter run
 
 ---
-
 ## 👩‍💻 Author
 
 *Shahd Ahmed*
