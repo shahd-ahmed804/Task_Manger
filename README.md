@@ -36,13 +36,12 @@ A modern *Task Management* application built with *Flutter & Dart* using *MVVM A
 
 ## 📸 Screenshots
 
-| Onboarding | Register| Error Login |
-| :---: |:--------:|:---: |
-| <img src="assets/screenshots/onboaring.jpeg" width="200"> | <img src="assets/screenshots/register.jpeg" width="200"> | <img src="assets/screenshots/error_auth.jpeg" width="200"> |
-
-| Add Task |Edit Task|Delete Task |
-|:------------:|:------------:|:-----------:|
-| <img src="assets/screenshots/add_task.jpeg" width="200"> | <img src="assets/screenshots/edit_task.jpeg" width="200"> | <img src="assets/screenshots/delete_task.jpeg" width="200"> | 
+| Onboarding | Register| Error Login | Home Screen |
+| :---: |:--------:|:---: |:------------:|
+| <img src="assets/screenshots/onboaring.jpeg" width="200"> | <img src="assets/screenshots/register.jpeg" width="200"> | <img src="assets/screenshots/error_auth.jpeg" width="200"> |  <img src="assets/screenshots/home.jpeg" width="200">   |
+| Add Task |Edit Task|Delete Task | Profile Screen |
+|:------------:|:------------:|:-----------:| :-----------:|
+| <img src="assets/screenshots/add_task.jpeg" width="200"> | <img src="assets/screenshots/edit_task.jpeg" width="200"> | <img src="assets/screenshots/delete_task.jpeg" width="200"> | <img src="assets/screenshots/profile.jpeg" width="200"> |
 
 ---
 
